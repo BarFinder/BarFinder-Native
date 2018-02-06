@@ -42,11 +42,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mMap.setMyLocationEnabled(true);
-                       // mMap.setOnMyLocationButtonClickListener(this);
-                       // mMap.setOnMyLocationClickListener(this);
+                        mMap.setOnMyLocationButtonClickListener(this);
+                        mMap.setOnMyLocationClickListener(this);
                     }
                 } else {
-                    LatLng stockholm = new LatLng(40.74, -74) ;
+                    LatLng stockholm = new LatLng(40.74, -74);
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(stockholm));
                 }
                 break;
@@ -58,14 +58,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Stockholm and move the camera
-        LatLng stockholm = new LatLng(40.74, -74);
+        LatLng stockholm = new LatLng(59.334591, 18.063240);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(stockholm));
         //  mMap.addMarker(new MarkerOptions().position(stockholm).title("Marker in Stockholm"));
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
-            //  mMap.setOnMyLocationButtonClickListener(this);
-          //  mMap.setOnMyLocationClickListener(this);
+            mMap.setOnMyLocationButtonClickListener(this);
+            mMap.setOnMyLocationClickListener(this);
         } else {
-            // mMap.moveCamera(CameraUpdateFactory.newLatLng(stockholm));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]
                         {Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
@@ -80,7 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Location found", Toast.LENGTH_SHORT).show();
         return false;
     }
 }
