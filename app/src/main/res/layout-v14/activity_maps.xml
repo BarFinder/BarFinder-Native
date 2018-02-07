@@ -22,6 +22,18 @@
         map:layout_constraintTop_toTopOf="parent"
         tools:context="com.kth.barfinder.barfinder_native.MapsActivity" />
 
+
+    <Button
+        android:id="@+id/Btn_Filter"
+        style="@android:style/Widget.DeviceDefault.Button"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:text="Filter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <fragment
         android:id="@+id/place_autocomplete_fragment"
         android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
@@ -33,5 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.012" />
+
 
 </android.support.constraint.ConstraintLayout>

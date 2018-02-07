@@ -1,14 +1,18 @@
 package com.kth.barfinder.barfinder_native;
 
 import android.Manifest;
+import android.content.Intent;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.widget.Button;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -24,7 +28,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.FileReader;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
@@ -39,6 +48,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Setup_Btn_Filter();
+
+    }
+
+
+
+    private void Setup_Btn_Filter() {
+
+        Button Btn_Filter = findViewById(R.id.Btn_Filter);
+
+        Btn_Filter.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(MapsActivity.this, FilterActivity.class));
+            }
+        });
+
         ConstInputListener();
     }
 
@@ -128,6 +155,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         {Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
             }
         }
+
+            /*    // this uses the marker from the drawable folder
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(10, 10))
+                    .title("Hello world")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug1)));
+            */
+
+            mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(10, 10))
+                .title("Beer")
+                .snippet("Here you can drink beer")
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("beermug1",100,100))));  // this changes the size of the marker from the drawable folder
+
+    }
+
+
+
+    //rezise Bitmap <-- To change the size of the markers
+    public Bitmap resizeMapIcons(String iconName,int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
     }
 
     @Override
