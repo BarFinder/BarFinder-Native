@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kth.barfinder.barfinder_native.FilterActivity">
+
+    <ToggleButton
+        android:id="@+id/TglBtn_Beer_2"
+        android:layout_width="85dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="44dp"
+        android:checked="false"
+        android:text="Beer"
+        android:textOff="Beer"
+        android:textOn="Beer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/TglBtn_Beer"
+        style="@style/toggleButton"
+        android:layout_width="72dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:textOff="Beer"
+        android:textOn="Beer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+
+
+
