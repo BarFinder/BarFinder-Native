@@ -15,7 +15,7 @@ public class FilterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filter);
 
         ToggleButton TglBtn_Beer = (ToggleButton) findViewById(R.id.TglBtn_Beer);
-        ToggleButton TglBtn_Beer_2 = (ToggleButton) findViewByid(R.id.TglBtn_Beer_2); // this will go later
+       // ToggleButton TglBtn_Beer_2 = (ToggleButton) findViewByid(R.id.TglBtn_Beer_2); // this will go later
 
 
         //this has to be changed! just for now
@@ -27,13 +27,13 @@ public class FilterActivity extends AppCompatActivity {
 
 
     // here the filters are fiven out to the mapsActivit
-    public Boolean[] getFilterValues()
+   /* public Boolean[] getFilterValues()
     {
         Boolean[] FilterValues = new Boolean[2];
         Arrays.fill(FilterValues, Boolean.FALSE);
 
 
-    }
+    }*/
 
 
 

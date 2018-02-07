@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BarFinder-Native.iml" filepath="$PROJECT_DIR$/BarFinder-Native.iml" />
       <module fileurl="file://C:\Users\armin\DevMobApp\BarFinder-Native\BarFinder-Native.iml" filepath="C:\Users\armin\DevMobApp\BarFinder-Native\BarFinder-Native.iml" />
+      <module fileurl="file://C:\Users\Shayan\Documents\NetBeansProjects\BarFinderNative\BarFinder-Native.iml" filepath="C:\Users\Shayan\Documents\NetBeansProjects\BarFinderNative\BarFinder-Native.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BarFinderNative.iml" filepath="$PROJECT_DIR$/BarFinderNative.iml" />
       <module fileurl="file://C:\Users\armin\DevMobApp\BarFinder-Native\BarFinderNative.iml" filepath="C:\Users\armin\DevMobApp\BarFinder-Native\BarFinderNative.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
