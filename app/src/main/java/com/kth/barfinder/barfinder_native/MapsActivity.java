@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
+    private final static int PROXIMITY_RADIUS = 600;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Setup_Btn_Filter();
 
     }
-
-
 
     private void Setup_Btn_Filter() {
 
@@ -78,6 +78,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.makeText(MapsActivity.this, "Search done.", Toast.LENGTH_SHORT).show();
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+                mMap.clear();
+                String url = getUrl(place.getLatLng().latitude, place.getLatLng().longitude, "Pub");
+                Object[] DataTransfer = new Object[2];
+                DataTransfer[0] = mMap;
+                DataTransfer[1] = url;
+                new GetNearbyPlacesData().execute(DataTransfer);
             }
 
             @Override
@@ -137,8 +144,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Stockholm and move the camera
         LatLng stockholm = new LatLng(59.334591, 18.063240);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(stockholm));
+        //mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 
-        //  mMap.addMarker(new MarkerOptions().position(stockholm).title("Marker in Stockholm"));
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
             mMap.setOnMyLocationButtonClickListener(this);
@@ -184,5 +191,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean onMyLocationButtonClick() {
         Toast.makeText(this, "Location found", Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    private String getUrl(double latitude, double longitude, String nearbyPlace) {
+
+        StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlacesUrl.append("location=" + latitude + "," + longitude);
+        googlePlacesUrl.append("&radius=" + PROXIMITY_RADIUS);
+        googlePlacesUrl.append("&type=" + nearbyPlace);
+        googlePlacesUrl.append("&keyword=" + nearbyPlace);
+        googlePlacesUrl.append("&sensor=true");
+        googlePlacesUrl.append("&key=" + "AIzaSyBUzyWVeFIzmAuDU4-083QM-gdbFZG8izc");
+        return (googlePlacesUrl.toString());
     }
 }
