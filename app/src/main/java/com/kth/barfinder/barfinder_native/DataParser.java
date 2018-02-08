@@ -53,7 +53,11 @@ public class DataParser {
         String vicinity = "-NA-";
         String latitude = "";
         String longitude = "";
-        String reference = "";
+        String place_id = "";
+        String opening_hours = "";
+        String rating = "";
+        String types = "";
+
 
         Log.d("getPlace", "Entered");
 
@@ -64,14 +68,30 @@ public class DataParser {
             if (!googlePlaceJson.isNull("vicinity")) {
                 vicinity = googlePlaceJson.getString("vicinity");
             }
+            if (!googlePlaceJson.isNull("place_id")) {
+                place_id = googlePlaceJson.getString("place_id");
+            }
+            if (!googlePlaceJson.isNull("opening_hours")) {
+                opening_hours = googlePlaceJson.getString("opening_hours");
+            }
+            if (!googlePlaceJson.isNull("rating")) {
+                rating = googlePlaceJson.getString("rating");
+            }
+            if (!googlePlaceJson.isNull("types")) {
+                types = googlePlaceJson.getString("types");
+            }
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
-            reference = googlePlaceJson.getString("reference");
+            place_id = googlePlaceJson.getString("place_id");
             googlePlaceMap.put("place_name", placeName);
             googlePlaceMap.put("vicinity", vicinity);
             googlePlaceMap.put("lat", latitude);
             googlePlaceMap.put("lng", longitude);
-            googlePlaceMap.put("reference", reference);
+            googlePlaceMap.put("place_id", place_id);
+            googlePlaceMap.put("opening_hours", opening_hours);
+            googlePlaceMap.put("rating", rating);
+            googlePlaceMap.put("types", types);
+
             Log.d("getPlace", "Putting Places");
         } catch (JSONException e) {
             Log.d("getPlace", "Error");
