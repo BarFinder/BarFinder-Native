@@ -158,29 +158,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
 
-            /*    // this uses the marker from the drawable folder
-            mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(10, 10))
-                    .title("Hello world")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug1)));
-            */
-
-            mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(10, 10))
-                .title("Beer")
-                .snippet("Here you can drink beer")
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("beermug1",100,100))));  // this changes the size of the marker from the drawable folder
-
+        // Use Custom Info Window
+        CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
+        mMap.setInfoWindowAdapter(customInfoWindow);
     }
 
 
 
-    //rezise Bitmap <-- To change the size of the markers
-    public Bitmap resizeMapIcons(String iconName,int width, int height){
-        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
-        return resizedBitmap;
-    }
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
@@ -204,4 +188,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googlePlacesUrl.append("&key=" + "AIzaSyBUzyWVeFIzmAuDU4-083QM-gdbFZG8izc");
         return (googlePlacesUrl.toString());
     }
+
+
 }
