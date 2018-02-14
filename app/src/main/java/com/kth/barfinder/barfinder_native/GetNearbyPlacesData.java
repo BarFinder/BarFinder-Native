@@ -92,10 +92,6 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             Marker m = mMap.addMarker(markerOptions);
             // from tutorial for custom info window
             m.setTag(info);
-
-            //move map camera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
         }
     }
 
