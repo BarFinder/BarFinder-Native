@@ -91,9 +91,20 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
             LatLng latLng = new LatLng(lat, lng);
             markerOptions_temp.position(latLng);
-
             //markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-            markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermugsmall));
+            try{
+                double rating_d = Double.parseDouble(rating)*10;
+                if (isBetween(rating_d, 35, 43)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermugsmall));
+                } else if (isBetween(rating_d, 43, 50)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_big));
+                } else {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_tiny));
+                }
+            }catch(NumberFormatException e){
+                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_tiny));
+            }
+
 
             //markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("beermug1",100,100)));
             Marker m = mMap.addMarker(markerOptions_temp);
@@ -120,6 +131,10 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
 
 
+    }
+
+    public static boolean isBetween(double x, double lower, double upper) {
+        return lower <= x && x <= upper;
     }
 
 
