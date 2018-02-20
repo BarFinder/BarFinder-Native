@@ -67,6 +67,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             String open_now  = googlePlace.get("open_now");
             String rating  = googlePlace.get("rating");
             String types  = googlePlace.get("types");
+            String photo_reference = googlePlace.get("photo_reference");
 
 
             //checking strings
@@ -90,6 +91,8 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             info_temp.setInstitution("Rating: " + rating);
             info_temp.setReview(open_now);
             //info.setPrice(types);
+            //check if photo reference is retrieved correctly:
+            info_temp.setPrice(photo_reference);
 
             LatLng latLng = new LatLng(lat, lng);
             markerOptions_temp.position(latLng);
@@ -121,6 +124,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
         for (int i = 0; i < nearbyPlacesList.size(); i++) {
             //create string
+           // String photo_url = url;
             String photo_url = url;
             //prepare call for  picture request
             Object[] DataTransfer = new Object[9];
