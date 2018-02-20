@@ -146,6 +146,36 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
         for (int i = 0; i < nearbyPlacesList.size(); i++) {
             //create string
+            // String photo_url = url;
+
+            //constructing the photo url:
+            // https://maps.googleapis.com/maps/api/place/photo?maxwidth=400
+            // &photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU
+            // &key=YOUR_API_KEY
+
+            StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400");
+            //StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+            googlePictureURL.append("&photoreference=CmRaAAAARtnVI-mDfl0UEYp2oS4yOumDwhJs4GV_Y5Yi8XyK-OokwZHqla0XNEquAfgoSR2dUp8zWVaniUpLDluWuyIkvbDuQpUr-3RQy04UKI3_gYvCUa4hdx8293eu_Wa0IFtcEhCQWlbCH1jkn9toQaY5V8GJGhQ50c3imi9DjT_CQVjow8LkzFMzZA");
+            googlePictureURL.append("&key=" + "AIzaSyBUzyWVeFIzmAuDU4-083QM-gdbFZG8izc");
+            String photo_url = googlePictureURL.toString();
+
+
+            //create string
+            //  String photo_url = url;
+            //prepare call for  picture request
+
+
+            // String photo_url = url;
+            //prepare call for  picture request
+            Object[] DataTransfer = new Object[9];
+            DataTransfer[0] = mMap;
+            DataTransfer[1] = photo_url;
+            DataTransfer[2] = (Object) infoList.get(i);
+            new GetPictures().execute(DataTransfer);
+        }
+        /*
+        for (int i = 0; i < nearbyPlacesList.size(); i++) {
+            //create string
            // String photo_url = url;
             String photo_url = url;
             //prepare call for  picture request
@@ -155,6 +185,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             DataTransfer[2] = (Object) infoList.get(i);
             new GetPictures().execute(DataTransfer);
         }
+        */
 
 
 

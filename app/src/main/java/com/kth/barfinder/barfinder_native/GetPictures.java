@@ -24,6 +24,7 @@ import java.util.List;
 public class GetPictures extends AsyncTask<Object, String, String> {
 
     private String image_data;  // whatever data type the image is
+
     private GoogleMap mMap;
     private String url;
     private Object infoDataObject;
