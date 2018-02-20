@@ -59,7 +59,8 @@ public class GetPictures extends AsyncTask<Object, String, String> {
 
     private void setNearbyMarkers(String image) {
 
-        infoDataList.setImage("beermugsmall"); // here goes the image
+       // infoDataList.setImage("beermugsmall"); // here goes the image
+        infoDataList.setImage(image); // here goes the image
         //infoDataList.setPrice("testen");
 
 

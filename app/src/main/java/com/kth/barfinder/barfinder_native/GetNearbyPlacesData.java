@@ -86,25 +86,44 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
             markerOptions_temp.title(placeName);
             markerOptions_temp.snippet(vicinity);
-            //info_temp.setImage("beermugsmall"); // here goes the image
+           // info_temp.setImage("beer0"); // here goes the image
             info_temp.setInstitution("Rating: " + rating);
             info_temp.setReview(open_now);
             //info.setPrice(types);
+            info_temp.setImage("beer3");
 
             LatLng latLng = new LatLng(lat, lng);
             markerOptions_temp.position(latLng);
             //markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+
             try{
                 double rating_d = Double.parseDouble(rating)*10;
-                if (isBetween(rating_d, 35, 43)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_halfrating));
-                } else if (isBetween(rating_d, 43, 50)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_fullrating));
-                } else {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_worstrating));
+                if (isBetween(rating_d, 0, 9)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer0));
+                    //info_temp.setImage("beer0");
+                }
+                if (isBetween(rating_d, 10, 19)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer1));
+                   // info_temp.setImage("beer1");
+                }
+                if (isBetween(rating_d, 20, 29)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer2));
+                   // info_temp.setImage("beer2");
+                }
+                if (isBetween(rating_d, 30, 39)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer3));
+                   // info_temp.setImage("beer3");
+                }
+                if (isBetween(rating_d, 40, 49)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer4));
+                   // info_temp.setImage("beer4");
+                }
+                if (isBetween(rating_d, 50, 50)) {
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer5));
+                   // info_temp.setImage("beer5");
                 }
             }catch(NumberFormatException e){
-                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_worstrating));
+                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermugsmall));
             }
 
 
