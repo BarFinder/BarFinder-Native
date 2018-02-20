@@ -73,6 +73,8 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             if(placeName == null ||  placeName.isEmpty()) { placeName= "no place info"; }
             if(vicinity == null ||  vicinity.isEmpty()) { vicinity= "no vicinity info"; }
             if(open_now == null ||  open_now.isEmpty()) { open_now= "no opening info"; }
+            if (open_now == "true"){open_now= "Place is currently open";}
+            if (open_now == "false"){open_now= "Place is currently closed";}
             if(rating == null ||  rating.isEmpty()) { rating= "no rating info"; }
             if(types == null ||  types.isEmpty()) { types= "no rating info"; }
 
@@ -86,7 +88,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             markerOptions_temp.snippet(vicinity);
             //info_temp.setImage("beermugsmall"); // here goes the image
             info_temp.setInstitution("Rating: " + rating);
-            info_temp.setReview("Open now: " + open_now);
+            info_temp.setReview(open_now);
             //info.setPrice(types);
 
             LatLng latLng = new LatLng(lat, lng);
@@ -95,14 +97,14 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             try{
                 double rating_d = Double.parseDouble(rating)*10;
                 if (isBetween(rating_d, 35, 43)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermugsmall));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_halfrating));
                 } else if (isBetween(rating_d, 43, 50)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_big));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_fullrating));
                 } else {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_tiny));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_worstrating));
                 }
             }catch(NumberFormatException e){
-                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_tiny));
+                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermug_worstrating));
             }
 
 
