@@ -57,6 +57,8 @@ public class DataParser {
         String opening_hours = "";
         String rating = "";
         String types = "";
+        String open_now = "";
+        String photos = "";
 
 
         Log.d("getPlace", "Entered");
@@ -71,17 +73,25 @@ public class DataParser {
             if (!googlePlaceJson.isNull("place_id")) {
                 place_id = googlePlaceJson.getString("place_id");
             }
-            if (!googlePlaceJson.isNull("opening_hours")) {
-                opening_hours = googlePlaceJson.getString("opening_hours");
-            }
             if (!googlePlaceJson.isNull("rating")) {
                 rating = googlePlaceJson.getString("rating");
             }
             if (!googlePlaceJson.isNull("types")) {
                 types = googlePlaceJson.getString("types");
             }
+            if (!googlePlaceJson.isNull("opening_hours")) {
+                opening_hours = googlePlaceJson.getString("opening_hours");
+                if (!googlePlaceJson.getJSONObject("opening_hours").isNull("open_now")) {
+                    open_now = googlePlaceJson.getJSONObject("opening_hours").getString("open_now");
+                }
+            }
+            if (!googlePlaceJson.isNull("photos")) {
+                photos = googlePlaceJson.getString("photos");
+            }
+
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
+
             place_id = googlePlaceJson.getString("place_id");
             googlePlaceMap.put("place_name", placeName);
             googlePlaceMap.put("vicinity", vicinity);
@@ -91,6 +101,8 @@ public class DataParser {
             googlePlaceMap.put("opening_hours", opening_hours);
             googlePlaceMap.put("rating", rating);
             googlePlaceMap.put("types", types);
+            googlePlaceMap.put("open_now", open_now);
+            googlePlaceMap.put("photos", photos);
 
             Log.d("getPlace", "Putting Places");
         } catch (JSONException e) {

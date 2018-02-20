@@ -52,14 +52,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void Setup_Btn_Filter() {
 
-        Button Btn_Filter = findViewById(R.id.Btn_Filter);
+        //Button Btn_Filter = findViewById(R.id.Btn_Filter);
 
+        /*
         Btn_Filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MapsActivity.this, FilterActivity.class));
             }
         });
+        */
 
         ConstInputListener();
     }
