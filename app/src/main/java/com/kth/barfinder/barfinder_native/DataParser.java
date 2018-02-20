@@ -59,6 +59,7 @@ public class DataParser {
         String types = "";
         String open_now = "";
         String photos = "";
+        String photo_reference = "";
 
 
         Log.d("getPlace", "Entered");
@@ -88,6 +89,9 @@ public class DataParser {
             if (!googlePlaceJson.isNull("photos")) {
                 photos = googlePlaceJson.getString("photos");
             }
+            if (!googlePlaceJson.isNull("photos")) {
+                photo_reference = googlePlaceJson.getJSONArray("photos").getJSONObject(0).getString("photo_reference");
+            }
 
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
@@ -103,6 +107,7 @@ public class DataParser {
             googlePlaceMap.put("types", types);
             googlePlaceMap.put("open_now", open_now);
             googlePlaceMap.put("photos", photos);
+            googlePlaceMap.put("photo_reference", photo_reference);
 
             Log.d("getPlace", "Putting Places");
         } catch (JSONException e) {
