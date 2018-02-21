@@ -1,5 +1,7 @@
 package com.kth.barfinder.barfinder_native;
 
+import android.content.Context;
+
 /**
  * Created by armin on 08.02.2018.
  */
@@ -10,6 +12,17 @@ public class InfoWindowData {
     private String Institution;
     private String Review;
     private String Price;
+    private String url;
+    private boolean pic_there = false;
+
+
+    public boolean getpic_there() {return pic_there;}
+
+    public void setpic_there(boolean pic_there) {this.pic_there = pic_there;}
+
+    public String geturl() {return url;}
+
+    public void seturl(String url) {this.url = url;}
 
     public String getname() { return name; }
 

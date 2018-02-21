@@ -12,6 +12,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +38,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             url = (String) params[1];
             DownloadUrl downloadUrl = new DownloadUrl();
             googlePlacesData = downloadUrl.readUrl(url);
+
         } catch (Exception e) {
             Log.d("GooglePlacesReadTask", e.toString());
         }
@@ -95,7 +98,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             info_temp.setImage("beer3");
 
             //check if photo reference is retrieved correctly:
-            info_temp.setPrice(photo_reference);
+            //info_temp.setPrice(photo_reference);
 
 
             LatLng latLng = new LatLng(lat, lng);
@@ -132,60 +135,23 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
                 markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermugsmall));
             }
 
+            StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400");
+            //StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+            googlePictureURL.append("&photoreference=" + photo_reference);
+            googlePictureURL.append("&key=" + "AIzaSyBUzyWVeFIzmAuDU4-083QM-gdbFZG8izc");
+            String photo_url = googlePictureURL.toString();
+
+            info_temp.seturl(photo_url);
+
 
             //markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("beermug1",100,100)));
             Marker m = mMap.addMarker(markerOptions_temp);
             // from tutorial for custom info window
             m.setTag(info_temp);
 
-            markerList.add(m);
-            markerOptionsList.add(markerOptions_temp);
-            infoList.add(info_temp);
+
 
         }
-
-        for (int i = 0; i < nearbyPlacesList.size(); i++) {
-            //create string
-            // String photo_url = url;
-
-            //constructing the photo url:
-            // https://maps.googleapis.com/maps/api/place/photo?maxwidth=400
-            // &photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU
-            // &key=YOUR_API_KEY
-
-            StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400");
-            //StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-            googlePictureURL.append("&photoreference=CmRaAAAARtnVI-mDfl0UEYp2oS4yOumDwhJs4GV_Y5Yi8XyK-OokwZHqla0XNEquAfgoSR2dUp8zWVaniUpLDluWuyIkvbDuQpUr-3RQy04UKI3_gYvCUa4hdx8293eu_Wa0IFtcEhCQWlbCH1jkn9toQaY5V8GJGhQ50c3imi9DjT_CQVjow8LkzFMzZA");
-            googlePictureURL.append("&key=" + "AIzaSyBUzyWVeFIzmAuDU4-083QM-gdbFZG8izc");
-            String photo_url = googlePictureURL.toString();
-
-
-            //create string
-            //  String photo_url = url;
-            //prepare call for  picture request
-
-
-            // String photo_url = url;
-            //prepare call for  picture request
-            Object[] DataTransfer = new Object[9];
-            DataTransfer[0] = mMap;
-            DataTransfer[1] = photo_url;
-            DataTransfer[2] = (Object) infoList.get(i);
-            new GetPictures().execute(DataTransfer);
-        }
-        /*
-        for (int i = 0; i < nearbyPlacesList.size(); i++) {
-            //create string
-           // String photo_url = url;
-            String photo_url = url;
-            //prepare call for  picture request
-            Object[] DataTransfer = new Object[9];
-            DataTransfer[0] = mMap;
-            DataTransfer[1] = photo_url;
-            DataTransfer[2] = (Object) infoList.get(i);
-            new GetPictures().execute(DataTransfer);
-        }
-        */
 
 
 
