@@ -95,10 +95,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             info_temp.setReview(open_now);
             //info.setPrice(types);
 
-            info_temp.setImage("beer3");
-
-            //check if photo reference is retrieved correctly:
-            //info_temp.setPrice(photo_reference);
+     
 
 
             LatLng latLng = new LatLng(lat, lng);
@@ -108,31 +105,31 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             try{
                 double rating_d = Double.parseDouble(rating)*10;
                 if (isBetween(rating_d, 0, 9)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer0));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_0));
                     //info_temp.setImage("beer0");
                 }
                 if (isBetween(rating_d, 10, 19)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer1));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_1));
                    // info_temp.setImage("beer1");
                 }
                 if (isBetween(rating_d, 20, 29)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer2));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_2));
                    // info_temp.setImage("beer2");
                 }
                 if (isBetween(rating_d, 30, 39)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer3));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_3));
                    // info_temp.setImage("beer3");
                 }
                 if (isBetween(rating_d, 40, 49)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer4));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_4));
                    // info_temp.setImage("beer4");
                 }
                 if (isBetween(rating_d, 50, 50)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer5));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_5));
                    // info_temp.setImage("beer5");
                 }
             }catch(NumberFormatException e){
-                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermugsmall));
+                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_0));
             }
 
             StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400");
