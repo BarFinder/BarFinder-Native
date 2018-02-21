@@ -12,6 +12,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +38,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             url = (String) params[1];
             DownloadUrl downloadUrl = new DownloadUrl();
             googlePlacesData = downloadUrl.readUrl(url);
+
         } catch (Exception e) {
             Log.d("GooglePlacesReadTask", e.toString());
         }
@@ -92,10 +95,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             info_temp.setReview(open_now);
             //info.setPrice(types);
 
-            info_temp.setImage("beer3");
-
-            //check if photo reference is retrieved correctly:
-            info_temp.setPrice(photo_reference);
+     
 
 
             LatLng latLng = new LatLng(lat, lng);
@@ -105,32 +105,40 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             try{
                 double rating_d = Double.parseDouble(rating)*10;
                 if (isBetween(rating_d, 0, 9)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer0));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_0));
                     //info_temp.setImage("beer0");
                 }
                 if (isBetween(rating_d, 10, 19)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer1));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_1));
                    // info_temp.setImage("beer1");
                 }
                 if (isBetween(rating_d, 20, 29)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer2));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_2));
                    // info_temp.setImage("beer2");
                 }
                 if (isBetween(rating_d, 30, 39)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer3));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_3));
                    // info_temp.setImage("beer3");
                 }
                 if (isBetween(rating_d, 40, 49)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer4));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_4));
                    // info_temp.setImage("beer4");
                 }
                 if (isBetween(rating_d, 50, 50)) {
-                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beer5));
+                    markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_5));
                    // info_temp.setImage("beer5");
                 }
             }catch(NumberFormatException e){
-                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.beermugsmall));
+                markerOptions_temp.icon(BitmapDescriptorFactory.fromResource(R.drawable.pints_0));
             }
+
+            StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400");
+            //StringBuilder googlePictureURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+            googlePictureURL.append("&photoreference=" + photo_reference);
+            googlePictureURL.append("&key=" + "AIzaSyBUzyWVeFIzmAuDU4-083QM-gdbFZG8izc");
+            String photo_url = googlePictureURL.toString();
+
+            info_temp.seturl(photo_url);
 
 
             //markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("beermug1",100,100)));
@@ -138,22 +146,8 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
             // from tutorial for custom info window
             m.setTag(info_temp);
 
-            markerList.add(m);
-            markerOptionsList.add(markerOptions_temp);
-            infoList.add(info_temp);
 
-        }
 
-        for (int i = 0; i < nearbyPlacesList.size(); i++) {
-            //create string
-           // String photo_url = url;
-            String photo_url = url;
-            //prepare call for  picture request
-            Object[] DataTransfer = new Object[9];
-            DataTransfer[0] = mMap;
-            DataTransfer[1] = photo_url;
-            DataTransfer[2] = (Object) infoList.get(i);
-            new GetPictures().execute(DataTransfer);
         }
 
 
