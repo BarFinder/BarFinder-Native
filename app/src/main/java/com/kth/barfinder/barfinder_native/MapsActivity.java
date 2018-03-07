@@ -1,19 +1,14 @@
 package com.kth.barfinder.barfinder_native;
 
 import android.Manifest;
-import android.content.Intent;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.widget.Button;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
