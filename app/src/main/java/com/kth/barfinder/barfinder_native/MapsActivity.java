@@ -34,8 +34,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
     private final static int PROXIMITY_RADIUS = 600;
-    private double LONGITUDE;
-    private double LATITUDE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +44,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Setup_Btn_Filter();
-
-    }
-
-    private void Setup_Btn_Filter() {
-
-        //Button Btn_Filter = findViewById(R.id.Btn_Filter);
-
-        /*
-        Btn_Filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MapsActivity.this, FilterActivity.class));
-            }
-        });
-        */
-
         ConstInputListener();
+
     }
 
     /*
